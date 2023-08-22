@@ -1,20 +1,4 @@
-total 76
--rw-rw-r-- 1 parallels parallels  410 Aug 11 10:28 1.c
--rw-rw-r-- 1 parallels parallels  135 Aug 10 21:19 2.c
--rw-rw-r-- 1 parallels parallels  336 Aug 10 21:22 3.c
--rw-rw-r-- 1 parallels parallels  513 Aug 11 09:19 4.c
--rw-rw-r-- 1 parallels parallels    0 Aug 11 10:06 5.c
--rw-rw-r-- 1 parallels parallels  402 Aug 22 09:48 6.c
--rw-rw-r-- 1 parallels parallels  820 Aug 18 10:08 7.c
--rw-rw-r-- 1 parallels parallels  713 Aug 22 10:02 8.c
--rw-rw-r-- 1 parallels parallels  874 Aug 18 10:21 DestFile
--rwxrwxr-x 1 parallels parallels 8992 Aug 22 09:48 a.out
--rw-rw-r-- 1 parallels parallels    0 Aug 11 10:34 dest
-p--------- 1 parallels parallels    0 Aug 11 10:31 destFIFO
--rw-rw-r-- 2 parallels parallels    0 Aug 11 10:31 destHL
-lrwxrwxrwx 1 parallels parallels    4 Aug 11 10:31 destSL -> dest
--rwxrwxr-x 1 parallels parallels 9144 Aug 18 11:02 fileLineByLine
--rwxrwxr-x 1 parallels parallels 9136 Aug 18 10:08 mycp
--rw-rw-r-- 1 parallels parallels   29 Aug 10 20:25 readme.md
--rw------- 1 parallels parallels    0 Aug 10 21:23 sample.txt
--rw-rw-r-- 1 parallels parallels  120 Aug 18 10:42 srcFile
+Hi this is the appended text from oldfd
+Hi this is the appended text from dupfd
+Hi this is the appended text from dupfd2
+Hi this is the appended text from fcntl
