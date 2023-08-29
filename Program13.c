@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/select.h>
+#include <fcntl.h>
+#include <unistd.h>
 
 int main(int argc, char const *argv[])
 {
@@ -18,12 +20,16 @@ int main(int argc, char const *argv[])
     int rval = select(1, &rf, NULL,NULL, &timep);
 
     if (rval == -1)
-        printf("error");
-    else if (rval)
-        printf("Data is present.\n");
-        /* FD_ISSET(0, &rfds) will be true. */
-    else
-        printf("No data.\n");
+        perror("error");
+    else if (rval){
+        const char* x = "Data is present.\n";
+        write(STDOUT_FILENO,x,strlen(x));
+
+    }
+    else{
+        const char* x = "No data.\n";
+        write(STDOUT_FILENO,x,strlen(x));
+    }
 
     return 0;
 }

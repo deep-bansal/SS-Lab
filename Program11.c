@@ -11,12 +11,12 @@ int main(int argc, char const *argv[])
 {
     int oldfd = open("sample.txt",O_RDWR);
     if(oldfd == -1){
-        printf("useless file");
+        perror("error opening file");
         return 1;
     }
     int dupfd =  dup(oldfd);
     if(dupfd == -1){
-        printf("error in  duplicating");
+        perror("error in  duplicating");
         return 1;
     }
 
@@ -40,7 +40,7 @@ int main(int argc, char const *argv[])
 
     int dupfd2 =  dup2(oldfd,5);
     if(dupfd2 == -1){
-        printf("error in  duplicating");
+        perror("error in  duplicating");
         return 1;
     }
 
@@ -49,14 +49,14 @@ int main(int argc, char const *argv[])
     int content_dupfd2 = write(dupfd2,append3, strlen(append3));
 
     if(content_dupfd2 == -1){
-        "error in appending data from dupfd2";
+        perror("error in appending data from dupfd2");
         return 0;
     }
 
     int fnctlfd =  fcntl(oldfd, F_DUPFD);
 
     if(fnctlfd == -1){
-        printf("error in  duplicating");
+        perror("error in  duplicating");
         return 1;
     }
 
@@ -65,28 +65,28 @@ int main(int argc, char const *argv[])
     int content_fcntlfd = write(oldfd,append4, strlen(append4));
 
     if(content_fcntlfd == -1){
-        "error in appending data from fcntlfd";
+        perror("error in appending data from fcntlfd");
         return 0;
     }
 
     int fd_oldfd = close(oldfd);
        if(fd_oldfd == -1){
-        printf("totally useless 1");
+        perror("totally useless 1");
     }
 
     int fd_dupfd = close(dupfd);
        if(fd_dupfd == -1){
-        printf("totally useless 2");
+        perror("totally useless 2");
     }
 
     int fd_dupfd2 = close(dupfd2);
        if(fd_dupfd2 == -1){
-        printf("totally useless 3");
+        perror("totally useless 3");
     }
 
     int fd_fcntl = close(fnctlfd);
        if(fd_fcntl == -1){
-        printf("totally useless 4");
+        perror("totally useless 4");
     }
 
 

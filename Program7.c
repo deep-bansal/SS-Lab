@@ -5,11 +5,9 @@
 #include <unistd.h>
 
 int main(int argc, char* argv[]){
-    // printf("%d",argc);
-    // printf("%s",argv[0]);
 
     if(argc != 3) {
-        printf("You are useless");
+        perror("invalid arguments");
         return 0;
     }
 
@@ -17,7 +15,8 @@ int main(int argc, char* argv[]){
     int fd_write = open(argv[2],O_WRONLY | O_CREAT);
 
     if(fd_read == -1 || fd_write == -1){
-        printf("useless");
+        perror("error opening file");
+        return 0;
     }
 
     while(1){
@@ -31,7 +30,8 @@ int main(int argc, char* argv[]){
     int fd_write_close = close(fd_write);
 
     if(fd_read_close == -1 || fd_write_close == -1){
-        printf("totally useless");
+        perror("error closing file");
+        return 0;
     }
 
     return 0;

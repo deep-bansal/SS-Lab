@@ -14,7 +14,7 @@ int main(int argc, char const *argv[])
 
     char buf[10];
     for(int i = 0; i < 10; i++){
-        scanf("%c",&buf[i]);
+        read(STDIN_FILENO,&buf[i],1);
     }
 
     int content_write = write(fd,&buf,sizeof(buf));
@@ -25,7 +25,7 @@ int main(int argc, char const *argv[])
     int seek = lseek(fd,10,SEEK_SET);
     // printf("%d",seek);
     for(int i = 0; i < 10; i++){
-        scanf("%c",&buf[i]);
+        read(STDIN_FILENO,&buf[i],1);
     }
 
     content_write = write(fd,&buf,sizeof(buf));

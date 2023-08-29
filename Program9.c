@@ -9,7 +9,7 @@ int main(int argc, char const *argv[])
     int val = stat(argv[1],&info);
 
     if(val < 0){
-        printf("Error in reading stats of the file\n");
+        perror("Error in reading stats of the file\n");
         return 0;
     }
 

@@ -9,7 +9,7 @@ int main(){
     int fd = open("ticketReservation.txt",O_WRONLY);
 
     if(fd == -1){
-        printf("file not opening");
+        perror("file not opening");
         return 1;
     }
 
@@ -23,14 +23,14 @@ int main(){
 
     int lck = fcntl(fd,F_SETLKW,&lock);
     if(lck == -1){
-        printf("Error in locking the file");
+        perror("Error in locking the file");
         return 0;
     }
     printf("Entered critical section\n");
 
     printf("Enter initial Random Ticket number: ");
     int ticketNo;
-    scanf("%d",&ticketNo);
+    read(STDIN_FILENO,ticketNo,sizeof(int));
 
     lseek(fd,0,SEEK_SET);
     int ticket = write(fd,&ticketNo,sizeof(int));

@@ -3,6 +3,7 @@
 #include <fcntl.h>
 #include <stdio.h>
 #include <unistd.h>
+#include <string.h>
 
 
 int main(int argc,char* argv[]){
@@ -21,7 +22,8 @@ int main(int argc,char* argv[]){
         {
           if(buf[i] == '\n'){
             line[lineIndex] = '\0';
-            printf("%s\n",line);
+            write(STDOUT_FILENO,line,strlen(line));
+            write(STDOUT_FILENO,"\n",strlen("\n"));
             lineIndex = 0;
           }
           else{

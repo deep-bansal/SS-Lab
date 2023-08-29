@@ -10,7 +10,7 @@ int main(int argc, char const *argv[])
     int fd = open("ticketReservation.txt",O_RDWR);
 
     if(fd == -1){
-        printf("file not opening");
+        perror("file not opening");
         return 1;
     }
     printf("Before applying exclusive lock\n");

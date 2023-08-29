@@ -10,7 +10,7 @@ int main() {
 
     if (fd == -1) {
         if (errno == EEXIST) {
-            printf("File already exists. Opening in read-write mode.\n");
+            perror("File already exists. Opening in read-write mode.\n");
         } else {
             perror("Error opening file");
             return 1;

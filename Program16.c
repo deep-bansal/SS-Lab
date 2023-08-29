@@ -7,7 +7,7 @@ int main(){
     int fd = open("sample.txt",O_WRONLY);
 
     if(fd == -1){
-        printf("useless file");
+        perror("useless file");
         return 1;
     }
      printf("Before entering critical section...\n");
