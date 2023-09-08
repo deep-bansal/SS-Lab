@@ -1,3 +1,13 @@
+/*
+============================================================================
+Name : 8.c
+Author : Deep Bansal
+Description : Write a program to open a file in read only mode, 
+              read line by line and display each line as it is read. 
+              Close the file when end of file is reached.
+Date: 25th Aug, 2023.
+============================================================================
+*/
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>

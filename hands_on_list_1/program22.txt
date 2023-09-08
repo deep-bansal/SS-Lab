@@ -1,0 +1,2 @@
+This line is written by chlid process in the file
+This line is written by parent process in the file
