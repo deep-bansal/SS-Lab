@@ -16,7 +16,7 @@ Date: 18th Aug, 2023.
 int main() {
     int fd;
 
-    fd = creat("sample.txt",S_IRWXO);
+    fd = creat("sample.txt",S_IRWXU);
     
     if (fd == -1) {
         perror("Error creating file");

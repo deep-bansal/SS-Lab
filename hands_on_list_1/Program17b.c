@@ -42,6 +42,10 @@ int main(int argc, char const *argv[])
 
     int buf;
     int num = read(fd,&buf,sizeof(int));
+    if(!buf){
+        perror("First enter initial ticket number");
+        return 0;
+    }
     buf++;
     printf("The ticket value is : %d\n",buf);
 

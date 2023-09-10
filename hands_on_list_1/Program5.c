@@ -1,5 +1,13 @@
-// Write a program to create five new files with infinite loop.
-// Execute the program in the background and check the file descriptor table at /proc/pid/fd.
+/*
+============================================================================
+Name : 5.c
+Author : Deep Bansal
+Description : Write a program to create five new files with infinite loop.
+              Execute the program in the background and check the file descriptor table at /proc/pid/fd.
+
+Date: 18th Aug, 2023.
+============================================================================
+*/
 
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -9,11 +17,11 @@
 int main(int argc, char const *argv[])
 {
     int fd_of_files[5];
-    fd_of_files[0] = open("/home/parallels/sslab/prog5files/file1", O_RDWR | O_CREAT | O_EXCL);
-    fd_of_files[1] = open("/home/parallels/sslab/prog5files/file2", O_RDWR | O_CREAT | O_EXCL);
-    fd_of_files[2] = open("/home/parallels/sslab/prog5files/file3", O_RDWR | O_CREAT | O_EXCL);
-    fd_of_files[3] = open("/home/parallels/sslab/prog5files/file4", O_RDWR | O_CREAT | O_EXCL);
-    fd_of_files[4] = open("/home/parallels/sslab/prog5files/file5", O_RDWR | O_CREAT | O_EXCL);
+    fd_of_files[0] = open("/home/parallels/sslab/hands_on_list_1/prog5files/file1", O_RDWR | O_CREAT | O_EXCL);
+    fd_of_files[1] = open("/home/parallels/sslab/hands_on_list_1/prog5files/file2", O_RDWR | O_CREAT | O_EXCL);
+    fd_of_files[2] = open("/home/parallels/sslab/hands_on_list_1/prog5files/file3", O_RDWR | O_CREAT | O_EXCL);
+    fd_of_files[3] = open("/home/parallels/sslab/hands_on_list_1/prog5files/file4", O_RDWR | O_CREAT | O_EXCL);
+    fd_of_files[4] = open("/home/parallels/sslab/hands_on_list_1/prog5files/file5", O_RDWR | O_CREAT | O_EXCL);
     int cnt = 4;
     while (cnt != -1)
     {
@@ -24,7 +32,7 @@ int main(int argc, char const *argv[])
         cnt--;
     }
     
-    getchar();
+    while(1);
     
     return 0;
 }

@@ -34,7 +34,7 @@ int main(int argc, char const *argv[])
         return 0;
     }
     int seek = lseek(fd,10,SEEK_SET);
-    // printf("%d",seek);
+    printf("%d",seek);
     for(int i = 0; i < 10; i++){
         read(STDIN_FILENO,&buf[i],1);
     }

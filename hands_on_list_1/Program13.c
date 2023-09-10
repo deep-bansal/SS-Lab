@@ -14,6 +14,7 @@ Date: 25th Aug, 2023.
 #include <sys/select.h>
 #include <fcntl.h>
 #include <unistd.h>
+#include <string.h>
 
 int main(int argc, char const *argv[])
 {

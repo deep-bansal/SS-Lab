@@ -1,6 +1,6 @@
 /*
 ============================================================================
-Name : 1.c
+Name : 1a.c
 Author : Deep Bansal
 Description : Create the following types of a files using (ii) system call 
               a. soft link (symlink system call)
@@ -24,16 +24,16 @@ int main(){
         return 0;
     }
 
-    int hard_link = link("file_to_link.txt","hard_link");
-    if(hard_link == -1){
-        perror("error in creating hard link\n");
-        return 0;
-    }
+    // int hard_link = link("file_to_link.txt","hard_link");
+    // if(hard_link == -1){
+    //     perror("error in creating hard link\n");
+    //     return 0;
+    // }
 
-    int fifo_file = mknod("fifoFile", S_IFIFO,0);
-    if(fifo_file == -1){
-        perror("error in creating fifo link\n");
-        return 0;
-    }
+    // int fifo_file = mknod("fifoFile", S_IFIFO,0);
+    // if(fifo_file == -1){
+    //     perror("error in creating fifo link\n");
+    //     return 0;
+    // }
 
 }

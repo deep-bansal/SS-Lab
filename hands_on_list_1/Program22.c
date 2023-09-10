@@ -20,7 +20,7 @@ Date: 4th Sept, 2023.
 
 int main(int argc, char const *argv[])
 {
-    int fd = open("program22.txt",O_RDWR);
+    int fd = open("prog22.txt",O_RDWR);
     if(fd == -1){
         perror("Error in opening the file\n");
         return 0;

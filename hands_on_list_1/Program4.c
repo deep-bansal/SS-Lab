@@ -15,20 +15,14 @@ Date: 18th Aug, 2023.
 int main() {
     int fd;
 
-    fd = open("sample.txt", O_RDWR | O_EXCL);
+    fd = open("sample.txt", O_RDWR | O_EXCL); //creates a file if not exist
 
     if (fd == -1) {
-        if (errno == EEXIST) {
-            perror("File already exists. Opening in read-write mode.\n");
-        } else {
-            perror("Error opening file");
-            return 1;
-        }
+        perror("error in creating the file");
+        return 0;
     } else {
         printf("File opened successfully in read-write mode.\n");
     }
-
-    
 
     // Close the file
     close(fd);

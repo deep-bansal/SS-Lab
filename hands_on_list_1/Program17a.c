@@ -39,10 +39,10 @@ int main(){
         return 0;
     }
     printf("Entered critical section\n");
+    printf("Enter initial Random Ticket number: \n");
 
-    printf("Enter initial Random Ticket number: ");
     int ticketNo;
-    read(STDIN_FILENO,ticketNo,sizeof(int));
+    read(STDIN_FILENO,&ticketNo,sizeof(int));
 
     lseek(fd,0,SEEK_SET);
     int ticket = write(fd,&ticketNo,sizeof(int));

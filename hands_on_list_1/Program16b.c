@@ -24,10 +24,10 @@ int main(){
     struct flock lock;
     memset(&lock,0,sizeof(lock));
     lock.l_type = F_RDLCK;
-    // lock.l_start = 0;
-    // lock.l_len = 0;
-    // lock.l_whence = SEEK_SET;
-    // lock.l_pid = getpid();
+    lock.l_start = 0;
+    lock.l_len = 0;
+    lock.l_whence = SEEK_SET;
+    lock.l_pid = getpid();
 
     int lck = fcntl(fd,F_SETLKW,&lock);
     printf("Entered critical section...\n");
