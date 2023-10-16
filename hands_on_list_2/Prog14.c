@@ -4,7 +4,7 @@ Name : 14.c
 Author : Deep Bansal
 Description : Write a simple program to create a pipe, write to the pipe, 
               read from pipe and display on the monitor.
-Date: 4th Sept, 2023.
+Date: 1th Sept, 2023.
 ============================================================================
 */
 #include <unistd.h>

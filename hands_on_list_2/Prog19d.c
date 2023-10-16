@@ -4,7 +4,7 @@ Name : 19d.c
 Author : Deep Bansal
 Description : Create a FIFO file by
               d. mknod command
-Date: 4th Sept, 2023.
+Date: 1th Sept, 2023.
 ============================================================================
 */
 #include <sys/types.h>

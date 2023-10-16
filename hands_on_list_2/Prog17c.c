@@ -1,59 +1,51 @@
 /*
 ============================================================================
-Name : 17a.c
+Name : 17c.c
 Author : Deep Bansal
 Description : Write a program to execute ls -l | wc.
               c. use fcntl
-Date: 4th Sept, 2023.
+Date: 1th Sept, 2023.
 ============================================================================
 */
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <string.h>
-#include <fcntl.h>
 
-int main(int argc, char const *argv[]) {
-    int pipe_val[2];
-    int pid;
+// Question : Write a program to execute `ls -l | wc`. Use `dup`
 
-    // Child process executes ls -l and sends its output to stdout.
-    // Parent process executes wc and takes its input from stdin.
+#include <unistd.h>    // Import for `pipe`, `fork`, `execl` & `dup`
+#include <sys/types.h> // Import `fork`
+#include <stdio.h>     // Import for `perror` & `printf`
 
-    if (pipe(pipe_val) == -1) {
-        perror("Error in creating the pipe");
-        return 1;
+void main()
+{
+    // File descriptor used for pipe operations
+    int pipefd[2];  // pipefd[0] -> read, pipefd[1] -> write
+    int pipeStatus; // // Variable used to determine success of `pipe` call
+    pid_t childPid;
+
+    pipeStatus = pipe(pipefd);
+
+    if (pipeStatus == -1)
+        perror("Error while creating the file!");
+    else
+    {
+        childPid = fork();
+
+        if (childPid == -1)
+            perror("Error while forking child!");
+        else if (childPid == 0)
+        {
+            // Child will enter this branch
+            close(STDIN_FILENO);
+            dup(pipefd[0]); // STDIN will be reassigned to pipefdp[0]
+            close(pipefd[1]);
+            execl("/usr/bin/wc", "wc", NULL);
+        }
+        else
+        {
+            // Parent will enter this branch
+            close(STDOUT_FILENO);
+            dup(pipefd[1]); // STDOUT will be reassigned to pipefd[1]
+            close(pipefd[0]);
+            execl("/usr/bin/ls", "ls -l", "-l", NULL);
+        }
     }
-
-    pid = fork();
-    if (pid == -1) {
-        perror("Error in executing fork");
-        return 1;
-    }
-
-    if (pid == 0) {
-        // Child process
-        close(pipe_val[0]);
-        pipe_val[1] =  fcntl(STDOUT_FILENO, F_DUPFD);
-
-        close(pipe_val[1]); 
-
-        const char* arg1 = "ls";
-        const char* arg2 = "-l";
-        execlp(arg1, arg1, arg2, NULL);
-        perror("Error in execl");
-        return 1;
-
-    } else {
-        close(pipe_val[1]);
-
-        pipe_val[0] =  fcntl(STDIN_FILENO, F_DUPFD);
-        close(pipe_val[0]);
-
-        execlp("wc", "wc", NULL);
-        perror("Error in execl");
-        return 1;
-    }
-
-    return 0;
 }

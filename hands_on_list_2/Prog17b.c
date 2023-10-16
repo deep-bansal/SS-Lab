@@ -1,10 +1,10 @@
 /*
 ============================================================================
-Name : 17a.c
+Name : 17b.c
 Author : Deep Bansal
 Description : Write a program to execute ls -l | wc.
               b. use dup2
-Date: 4th Sept, 2023.
+Date: 1th Sept, 2023.
 ============================================================================
 */
 #include <stdio.h>

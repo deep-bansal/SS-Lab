@@ -4,7 +4,7 @@ Name : 15.c
 Author : Deep Bansal
 Description : Write a simple program to send some data from parent to the child 
               process.
-Date: 4th Sept, 2023.
+Date: 1th Sept, 2023.
 ============================================================================
 */
 #include <stdio.h>

@@ -4,55 +4,46 @@ Name : 17a.c
 Author : Deep Bansal
 Description : Write a program to execute ls -l | wc.
               a. use dup
-Date: 4th Sept, 2023.
+Date: 1th Sept, 2023.
 ============================================================================
 */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <string.h>
+#include <unistd.h>    // Import for `pipe`, `fork`, `execl` & `dup`
+#include <sys/types.h> // Import `fork`
+#include <stdio.h>     // Import for `perror` & `printf`
 
-int main(int argc, char const *argv[])
+void main()
 {
-    int pipe_val[2];
-    int pid;
-    // child process executes ls -l and send it to stdout and parent execute wc taking stdin 
+    // File descriptor used for pipe operations
+    int pipefd[2];  // pipefd[0] -> read, pipefd[1] -> write
+    int pipeStatus; // // Variable used to determine success of `pipe` call
+    pid_t childPid;
 
-    pid = fork();
-    if(pid == -1){
-        perror("Error in executing fork");
-        return 1;
+    pipeStatus = pipe(pipefd);
+
+    if (pipeStatus == -1)
+        perror("Error while creating the file!");
+    else
+    {
+        childPid = fork();
+
+        if (childPid == -1)
+            perror("Error while forking child!");
+        else if (childPid == 0)
+        {
+            // Child will enter this branch
+            close(STDIN_FILENO);
+            dup(pipefd[0]); // STDIN will be reassigned to pipefdp[0]
+            close(pipefd[1]);
+            execl("/usr/bin/wc", "wc", NULL);
+        }
+        else
+        {
+            // Parent will enter this branch
+            close(STDOUT_FILENO);
+            dup(pipefd[1]); // STDOUT will be reassigned to pipefd[1]
+            close(pipefd[0]);
+            execl("/usr/bin/ls", "ls -l", "-l", NULL);
+        }
     }
-    if(pipe(pipe_val) == -1){
-        perror("error in creating the pipe");
-        return 0;
-    }
-
-    if(pid == 0){
-        close(pipe_val[0]);
-        pipe_val[1] = dup(STDOUT_FILENO);
-
-        const char* arg1 = "ls";
-        const char* arg2 = "-l";
-
-        int stats = execl("/bin/ls",arg1,arg2,NULL);
-        close(pipe_val[1]);
-        close(STDOUT_FILENO);
-    }
-    else{
-        close(pipe_val[1]);
-        close(STDOUT_FILENO);
-        pipe_val[0] = dup(STDERR_FILENO);
-        // close(pipe_val[0]);
-
-        execlp("wc", "wc", NULL);
-
-        
-
-    }
-
-
-    return 0;
 }
-
